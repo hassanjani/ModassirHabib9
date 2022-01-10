@@ -13,7 +13,7 @@ class AppConstants {
   static const String BASE_URL = 'https://alhafizcloth.com/100min/';
   static const String BRANDS_URI = 'api/v1/brands/1';
   static const String BRAND_PRODUCT_URI =
-      'api/v1/brands/products/1/34.00029228659783/71.48496111784907'; //parameter pass id api/v1/brands/products/1/34.00029228659783/71.48496111784907
+      'api/v1/brands/products/1/BRAND_ID/34.00029228659783/71.48496111784907'; //parameter pass id api/v1/brands/products/1/34.00029228659783/71.48496111784907
   ////////////////////  C ///////////////////////////////////
   static const String CATEGORIES_URI = 'api/v1/categories/1';
   static const String CATEGORY_PRODUCT_URI = 'api/v1/categories/products/';
@@ -31,7 +31,7 @@ class AppConstants {
   ////////////////////  L ///////////////////////////////////
   static const String LOGIN_URI = 'api/v1/auth/login'; // return token and id
   static const String LATEST_PRODUCTS_URI =
-      'api/v1/products/latest/1/32.000009/74.08999?limit=10&&offset=';
+      'api/v1/products/latest/1/34.00029228659783/71.48496111784907?limit=10&&offset=';
   static const String LATEST_PRODUCTS_NEARBY_10_KILOMETER =
       'https://alhafizcloth.com/100min/api/v1/brands/products/1/34.00029228659783/71.48496111784907';
   ////////////////////  M ///////////////////////////////////
