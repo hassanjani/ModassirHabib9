@@ -32,8 +32,6 @@ class AppConstants {
   static const String LOGIN_URI = 'api/v1/auth/login'; // return token and id
   static const String LATEST_PRODUCTS_URI =
       'api/v1/products/latest/1/34.00029228659783/71.48496111784907?limit=10&&offset=';
-  static const String LATEST_PRODUCTS_NEARBY_10_KILOMETER =
-      'https://alhafizcloth.com/100min/api/v1/brands/products/1/34.00029228659783/71.48496111784907';
   ////////////////////  M ///////////////////////////////////
   static const String MESSAGES_URI = 'api/v1/customer/chat/messages?shop_id=';
   static const String MAIN_BANNER_URI =
