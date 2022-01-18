@@ -78,8 +78,8 @@ class ProductWidget extends StatelessWidget {
                     // Text(
                     //   PriceConverter.convertPrice(
                     //       context, productModel.unitPrice,
-                    //       discountType: productModel.discountType,
-                    //       discount: productModel.discount),
+                    //       // discountType: productModel.discountType,
+                    //       discount: productModel.unitPrice),
                     //   style: robotoBold.copyWith(
                     //       color: ColorResources.getPrimary(context)),
                     // ),

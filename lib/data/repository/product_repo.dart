@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_app/data/datasource/remote/dio/dio_client.dart';
 import 'package:user_app/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:user_app/data/model/response/base/api_response.dart';
+import 'package:user_app/utill/Constrant.dart';
 import 'package:user_app/utill/app_constants.dart';
 
 class ProductRepo {
@@ -13,8 +14,7 @@ class ProductRepo {
     print("Ok 11");
     try {
       print("Ok 12");
-      final response =
-          await dioClient.get(AppConstants.LATEST_PRODUCTS_URI + offset);
+      final response = await dioClient.get(LATEST_PRODUCTS_URI + offset);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       print("Ok 13");

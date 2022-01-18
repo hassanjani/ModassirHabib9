@@ -2,15 +2,15 @@ import 'package:user_app/data/model/response/language_model.dart';
 
 class AppConstants {
   static const String USER_ID = 'userId';
+  static const String NAME = 'name';
   static const String USER_NOTIFICATION =
       'https://alhafizcloth.com/100min/api/v1/notifications';
-  static const String NAME = 'name';
+  ////////////////////// B /////////////////////////////////////
+  static const String BASE_URL = 'https://alhafizcloth.com/100min/';
   static const String ADD_WISH_LIST_URI =
       'api/v1/customer/wish-list/add?product_id=';
   static const String ADDRESS_LIST_URI = 'api/v1/customer/address/list';
   static const String ADD_ADDRESS_URI = 'api/v1/customer/address/add';
-  ////////////////////// B /////////////////////////////////////
-  static const String BASE_URL = 'https://alhafizcloth.com/100min/';
   static const String BRANDS_URI = 'api/v1/brands/1';
   static const String BRAND_PRODUCT_URI =
       'api/v1/brands/products/1/BRAND_ID/34.00029228659783/71.48496111784907'; //parameter pass id api/v1/brands/products/1/34.00029228659783/71.48496111784907
@@ -30,8 +30,8 @@ class AppConstants {
       'api/v1/banners?banner_type=footer_banner';
   ////////////////////  L ///////////////////////////////////
   static const String LOGIN_URI = 'api/v1/auth/login'; // return token and id
-  static const String LATEST_PRODUCTS_URI =
-      'api/v1/products/latest/1/34.00029228659783/71.48496111784907?limit=10&&offset=';
+  // static const String LATEST_PRODUCTS_URI =
+  //     'api/v1/products/latest/1/34.00029228659783/71.48496111784907?limit=10&&offset=';
   ////////////////////  M ///////////////////////////////////
   static const String MESSAGES_URI = 'api/v1/customer/chat/messages?shop_id=';
   static const String MAIN_BANNER_URI =
