@@ -17,14 +17,14 @@ class AppConstants {
   ////////////////////  C ///////////////////////////////////
   static const String CATEGORIES_URI = 'api/v1/categories/1';
   static const String CATEGORY_PRODUCT_URI = 'api/v1/categories/products/';
-  static const String CONFIG_URI = 'api/v1/config/';
+  static const String CONFIG_URI = 'api/v1/config/1';
   static const String CUSTOMER_URI = 'api/v1/customer/info';
   static const String COUNTER_URI = 'api/v1/products/counter/';
   static const String COUPON_URI = 'api/v1/coupon/apply?code=';
   static const String CHAT_INFO_URI = 'api/v1/customer/chat';
   ////////////////////  F ///////////////////////////////////
   static const String FORGET_PASSWORD_URI = 'api/v1/auth/forgot-password';
-  static const String FLASH_DEAL_URI = 'api/v1/flash-deals';
+  static const String FLASH_DEAL_URI = 'api/v1/flash-deals/1';
   static const String FLASH_DEAL_PRODUCT_URI = 'api/v1/flash-deals/products/';
   static const String FOOTER_BANNER_URI =
       'api/v1/banners?banner_type=footer_banner';
@@ -55,7 +55,7 @@ class AppConstants {
   static const String REGISTRATION_URI =
       'api/v1/auth/register'; //  api/v1/delivery/register
   ////////////////////  S ///////////////////////////////////
-  static const String SEARCH_URI = 'api/v1/products/search?name=';
+  static const String SEARCH_URI = 'api/v1/products/search/1?name=';
   static const String SELLER_URI = 'api/v1/seller?seller_id=';
   static const String SUPPORT_TICKET_URI =
       'api/v1/customer/support-ticket/create';

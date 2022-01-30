@@ -12,7 +12,8 @@ class PriceConverter {
         price = price - ((discount / 100) * price);
       }
     }
-    return '${Provider.of<SplashProvider>(context, listen: false).myCurrency.symbol}${(price * Provider.of<SplashProvider>(context, listen: false).myCurrency.exchangeRate * (1 / Provider.of<SplashProvider>(context, listen: false).usdCurrency.exchangeRate)).toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
+    return '${Provider.of<SplashProvider>(context, listen: false).myCurrency.symbol}'
+        '${(price * Provider.of<SplashProvider>(context, listen: false).myCurrency.exchangeRate * (1 / Provider.of<SplashProvider>(context, listen: false).usdCurrency.exchangeRate)).toStringAsFixed(2).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}';
   }
 
   static double convertWithDiscount(BuildContext context, double price,

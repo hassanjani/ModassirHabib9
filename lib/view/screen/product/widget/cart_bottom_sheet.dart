@@ -126,7 +126,10 @@ class CartBottomSheet extends StatelessWidget {
                         child: FadeInImage.assetNetwork(
                           placeholder: Images.placeholder,
                           image:
-                              '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${product.thumbnail}',
+
+                              // '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}'
+                              'https://alhafizcloth.com/storage/app/public/product/store/thumbnail'
+                              '/${product.thumbnail}',
                         ),
                       ),
                       SizedBox(width: 20),
@@ -139,15 +142,15 @@ class CartBottomSheet extends StatelessWidget {
                                       fontSize: Dimensions.FONT_SIZE_LARGE),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis),
-                              Text(
-                                PriceConverter.convertPrice(
-                                    context, product.unitPrice,
-                                    discountType: product.discountType,
-                                    discount: product.discount),
-                                style: titilliumBold.copyWith(
-                                    color: ColorResources.getPrimary(context),
-                                    fontSize: 16),
-                              ),
+                              // Text(
+                              //   PriceConverter.convertPrice(
+                              //       context, product.unitPrice,
+                              //       discountType: product.discountType,
+                              //       discount: product.discount),
+                              //   style: titilliumBold.copyWith(
+                              //       color: ColorResources.getPrimary(context),
+                              //       fontSize: 16),
+                              // ),
                               Text(
                                 PriceConverter.convertPrice(
                                     context, product.unitPrice),

@@ -54,7 +54,7 @@ class CartWidget extends StatelessWidget {
           child: FadeInImage.assetNetwork(
             placeholder: Images.placeholder,
             image:
-                'https://alhafizcloth.com/100min/storage/app/public/product/store/2021-11-10-618b67c002cd7.png',
+                'https://alhafizcloth.com/100min/storage/app/public/product/store/',
             height: 50,
             width: 50,
           ),

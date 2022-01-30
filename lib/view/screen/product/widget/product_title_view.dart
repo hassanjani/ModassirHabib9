@@ -40,13 +40,14 @@ class ProductTitleView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
-                  // Text(
-                  //   '${PriceConverter.convertPrice(context, _startingPrice, discount: productModel.discount, discountType: productModel.discountType)}'
-                  //   '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: productModel.discount, discountType: productModel.discountType)}' : ''}',
-                  //   style: titilliumBold.copyWith(
-                  //       color: ColorResources.getPrimary(context),
-                  //       fontSize: Dimensions.FONT_SIZE_LARGE),
-                  // ),
+                  Text(
+                    // productModel.unitPrice.toString(),
+                    '${PriceConverter.convertPrice(context, _startingPrice, discount: productModel.discount, discountType: productModel.discountType)}'
+                    '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: productModel.discount, discountType: productModel.discountType)}' : ''}',
+                    style: titilliumBold.copyWith(
+                        color: ColorResources.getPrimary(context),
+                        fontSize: Dimensions.FONT_SIZE_LARGE),
+                  ),
                   SizedBox(width: 20),
                   productModel.discount >= 1
                       ? Container(

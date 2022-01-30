@@ -75,14 +75,15 @@ class ProductWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis),
                   SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   Row(children: [
-                    // Text(
-                    //   PriceConverter.convertPrice(
-                    //       context, productModel.unitPrice,
-                    //       // discountType: productModel.discountType,
-                    //       discount: productModel.unitPrice),
-                    //   style: robotoBold.copyWith(
-                    //       color: ColorResources.getPrimary(context)),
-                    // ),
+                    Text(
+                      // productModel.unitPrice.toString(),
+                      PriceConverter.convertPrice(
+                          context, productModel.unitPrice,
+                          discountType: productModel.discountType,
+                          discount: productModel.discount),
+                      style: robotoBold.copyWith(
+                          color: ColorResources.getPrimary(context)),
+                    ),
                     Expanded(child: SizedBox.shrink()),
                     Text(
                         productModel.rating != null

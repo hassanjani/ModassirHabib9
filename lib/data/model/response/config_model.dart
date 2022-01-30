@@ -210,6 +210,7 @@ class StaticUrls {
     data['brands'] = this._brands;
     data['categories'] = this._categories;
     data['customer_account'] = this._customerAccount;
+    print(this._customerAccount);
     return data;
   }
 }

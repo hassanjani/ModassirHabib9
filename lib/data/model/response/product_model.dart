@@ -249,7 +249,6 @@ class Product {
     _refundable = json['refundable'];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
     _thumbnail = json['thumbnail'];
-    print("KArak" + _thumbnail);
     _featured = json['featured'];
     _flashDeal = json['flash_deal'];
     _videoProvider = json['video_provider'];
