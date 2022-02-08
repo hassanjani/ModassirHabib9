@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:place_picker/entities/location_result.dart';
-import 'package:place_picker/widgets/place_picker.dart';
+// import 'package:place_picker/entities/location_result.dart';
+// import 'package:place_picker/widgets/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:user_app/data/model/body/register_model.dart';
 import 'package:user_app/localization/language_constrants.dart';
@@ -12,6 +12,7 @@ import 'package:user_app/utill/dimensions.dart';
 import 'package:user_app/view/basewidget/button/custom_button.dart';
 import 'package:user_app/view/basewidget/textfield/custom_password_textfield.dart';
 import 'package:user_app/view/basewidget/textfield/custom_textfield.dart';
+import 'package:user_app/view/screen/auth/widget/places/place_service.dart';
 import 'package:user_app/view/screen/auth/widget/sign_in_widget.dart';
 import 'package:user_app/view/screen/dashboard/dashboard_screen.dart';
 
@@ -239,114 +240,55 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               ),
 
               Container(
-                  margin: EdgeInsets.only(
-                      left: Dimensions.MARGIN_SIZE_DEFAULT,
-                      right: Dimensions.MARGIN_SIZE_DEFAULT,
-                      top: Dimensions.MARGIN_SIZE_SMALL),
-                  child: Text("Latitude: $lat")
-                  // child: CustomTextField(
-                  //   textInputType: TextInputType.number,
-                  //   hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
-                  //   focusNode: _ltFocus,
-                  //   nextNode: _lgFocus,
-                  //   controller: _ltController,
-                  //   isPhoneNumber: true,
-                  // ),
-                  ),
+                margin: EdgeInsets.only(
+                    left: Dimensions.MARGIN_SIZE_DEFAULT,
+                    right: Dimensions.MARGIN_SIZE_DEFAULT,
+                    top: Dimensions.MARGIN_SIZE_SMALL),
+                //  child: Text("Latitude: $lat")
+                child: TextField(
+                  onTap: () {
+                    showSearch(
+                      context: context,
+                      // we haven't created AddressSearch class
+                      // this should be extending SearchDelegate
+                      delegate: AddressSearch(),
+                    );
+                  },
+                  focusNode: _ltFocus,
+                  controller: _ltController,
+                ),
+              ),
               Container(
-                  margin: EdgeInsets.only(
-                      left: Dimensions.MARGIN_SIZE_DEFAULT,
-                      right: Dimensions.MARGIN_SIZE_DEFAULT,
-                      top: Dimensions.MARGIN_SIZE_SMALL),
-                  child: Text("Longitude: $lan")
-
-                  // child: CustomTextField(
-                  //   textInputType: TextInputType.number,
-                  //   hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
-                  //   focusNode: _lgFocus,
-                  //   nextNode: _passwordFocus,
-                  //   controller: _lgController,
-                  //   isPhoneNumber: true,
-                  // ),
-                  ),
+                margin: EdgeInsets.only(
+                    left: Dimensions.MARGIN_SIZE_DEFAULT,
+                    right: Dimensions.MARGIN_SIZE_DEFAULT,
+                    top: Dimensions.MARGIN_SIZE_SMALL),
+                //  child: Text("Longitude: $lan")
+                child: TextField(
+                  onTap: () {
+                    showSearch(
+                      context: context,
+                      // we haven't created AddressSearch class
+                      // this should be extending SearchDelegate
+                      delegate: AddressSearch(),
+                    );
+                  },
+                  focusNode: _lgFocus,
+                  controller: _lgController,
+                ),
+                // child: CustomTextField(
+                //   textInputType: TextInputType.number,
+                //   hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
+                //   focusNode: _lgFocus,
+                //   nextNode: _passwordFocus,
+                //   controller: _lgController,
+                //   isPhoneNumber: true,
+                // ),
+              ),
               Container(
                 child: TextButton(
                   onPressed: () {
-                    showplacepicker();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return PlacePicker(
-                    //         apiKey: 'AIzaSyApW8gGWAffK0xp47vZ_Nw3mT66LqU0-K0',
-                    //         initialPosition:
-                    //             LatLng(33.6850553230414, 73.04830342421138),
-                    //         useCurrentLocation: true,
-                    //         selectInitialPosition: true,
-                    //
-                    //         //usePlaceDetailSearch: true,
-                    //         onPlacePicked: (result) {
-                    //           selectedPlace = result;
-                    //           print(selectedPlace.adrAddress);
-                    //           Navigator.of(context).pop();
-                    //           setState(() {});
-                    //         },
-                    //         forceSearchOnZoomChanged: true,
-                    //         automaticallyImplyAppBarLeading: false,
-                    //         // autocompleteLanguage: "ko",
-                    //         region: 'au',
-                    //         selectedPlaceWidgetBuilder:
-                    //             (_, selectedPlace, state, isSearchBarFocused) {
-                    //           print(
-                    //               "state: $state, isSearchBarFocused: $isSearchBarFocused");
-                    //           return isSearchBarFocused
-                    //               ? Container()
-                    //               : FloatingCard(
-                    //                   bottomPosition: 0.0,
-                    //                   // MediaQuery.of(context) will cause rebuild. See MediaQuery document for the information.
-                    //                   leftPosition: 0.0,
-                    //                   rightPosition: 0.0,
-                    //                   width: 500,
-                    //                   borderRadius: BorderRadius.circular(12.0),
-                    //                   child: state == SearchingState.Searching
-                    //                       ? Center(
-                    //                           child: CircularProgressIndicator(
-                    //                           backgroundColor:
-                    //                               Color(0xFF000066),
-                    //                           valueColor:
-                    //                               new AlwaysStoppedAnimation<
-                    //                                   Color>(Color(0xFF33d6ff)),
-                    //                         ))
-                    //                       : RaisedButton(
-                    //                           child: Text("Pick Here"),
-                    //                           onPressed: () {
-                    //                             double lat = selectedPlace
-                    //                                 .geometry.location.lat;
-                    //                             double lan = selectedPlace
-                    //                                 .geometry.location.lng;
-                    //                             print(selectedPlace
-                    //                                 .geometry.location);
-                    //                             print(selectedPlace
-                    //                                 .formattedAddress);
-                    //                             // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as
-                    //                             //            this will override default 'Select here' Button.
-                    //
-                    //                             // Navigator.of(context).pop();
-                    //                           },
-                    //                         ),
-                    //                 );
-                    //         },
-                    //         pinBuilder: (context, state) {
-                    //           if (state == PinState.Idle) {
-                    //             return Icon(Icons.favorite_border);
-                    //           } else {
-                    //             return Icon(Icons.favorite);
-                    //           }
-                    //         },
-                    //       );
-                    //     },
-                    //   ),
-                    // );
+                    //showplacepicker();
                   },
                   child: Text(getTranslated('CHOSE_LOC', context),
                       style: titilliumRegular.copyWith(
@@ -394,18 +336,74 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   double lat = 0;
   double lan = 0;
-  showplacepicker() async {
-    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PlacePicker(
-              "AIzaSyApW8gGWAffK0xp47vZ_Nw3mT66LqU0-K0",
-              // displayLocation: customLocation,
-            )));
+  // showplacepicker() async {
+  //   LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (context) => PlacePicker(
+  //             "AIzaSyApW8gGWAffK0xp47vZ_Nw3mT66LqU0-K0",
+  //             // displayLocation: customLocation,
+  //           )));
+  //
+  //   // Handle the result in your way
+  //   setState(() {
+  //     lat = result.latLng.latitude;
+  //     lan = result.latLng.longitude;
+  //   });
+  //   print(result);
+  // }
+}
 
-    // Handle the result in your way
-    setState(() {
-      lat = result.latLng.latitude;
-      lan = result.latLng.longitude;
-    });
-    print(result);
+class AddressSearch extends SearchDelegate<Suggestion> {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        tooltip: 'Clear',
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      tooltip: 'Back',
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return FutureBuilder(
+      // We will put the api call here
+      future: null,
+      builder: (context, snapshot) => query == ''
+          ? Container(
+              padding: EdgeInsets.all(16.0),
+              child: Text('Enter your address'),
+            )
+          : snapshot.hasData
+              ? ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    // we will display the data returned from our future here
+                    title: Text(snapshot.data[index]),
+                    onTap: () {
+                      close(context, snapshot.data[index]);
+                    },
+                  ),
+                  itemCount: snapshot.data.length,
+                )
+              : Container(child: Text('Loading...')),
+    );
   }
 }
