@@ -285,17 +285,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 //   isPhoneNumber: true,
                 // ),
               ),
-              Container(
-                child: TextButton(
-                  onPressed: () {
-                    //showplacepicker();
-                  },
-                  child: Text(getTranslated('CHOSE_LOC', context),
-                      style: titilliumRegular.copyWith(
-                          fontSize: Dimensions.FONT_SIZE_LARGE,
-                          color: ColorResources.getColombiaBlue(context))),
-                ),
-              )
+              // Container(
+              //   child: TextButton(
+              //     onPressed: () {
+              //       //showplacepicker();
+              //     },
+              //     child: Text(getTranslated('CHOSE_LOC', context),
+              //         style: titilliumRegular.copyWith(
+              //             fontSize: Dimensions.FONT_SIZE_LARGE,
+              //             color: ColorResources.getColombiaBlue(context))),
+              //   ),
+              // )
             ],
           ),
         ),
