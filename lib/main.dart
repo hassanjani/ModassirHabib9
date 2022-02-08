@@ -3,12 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:user_app/LoginToken/SinInPage.dart';
-import 'package:user_app/check.dart';
-import 'package:user_app/view/screen/auth/auth_screen.dart';
-import 'package:user_app/view/screen/dashboard/dashboard_screen.dart';
-import 'package:user_app/view/screen/onboarding/onboarding_screen.dart';
-import 'package:user_app/view/screen/order/order_details_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:user_app/provider/auth_provider.dart';
 import 'package:user_app/provider/brand_provider.dart';
 import 'package:user_app/provider/cart_provider.dart';
@@ -29,16 +24,15 @@ import 'package:user_app/provider/wishlist_provider.dart';
 import 'package:user_app/theme/dark_theme.dart';
 import 'package:user_app/theme/light_theme.dart';
 import 'package:user_app/utill/app_constants.dart';
-import 'package:user_app/view/screen/splash/splash_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:user_app/view/screen/wishlist/goodPage.dart';
+import 'package:user_app/view/screen/dashboard/dashboard_screen.dart';
+import 'package:user_app/view/screen/order/order_details_screen.dart';
 
 import 'di_container.dart' as di;
 import 'localization/app_localization.dart';
 import 'notification/my_notification.dart';
-import 'provider/product_details_provider.dart';
 import 'provider/banner_provider.dart';
 import 'provider/flash_deal_provider.dart';
+import 'provider/product_details_provider.dart';
 import 'provider/product_provider.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

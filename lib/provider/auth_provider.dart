@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:user_app/data/model/body/login_model.dart';
 import 'package:user_app/data/model/body/register_model.dart';
@@ -5,22 +6,20 @@ import 'package:user_app/data/model/response/base/api_response.dart';
 import 'package:user_app/data/model/response/base/error_response.dart';
 import 'package:user_app/data/model/response/response_model.dart';
 import 'package:user_app/data/repository/auth_repo.dart';
-import 'package:user_app/helper/api_checker.dart';
 
 class AuthProvider with ChangeNotifier {
   final AuthRepo authRepo;
-  AuthProvider({ this.authRepo});
+  AuthProvider({this.authRepo});
 
   bool _isLoading = false;
   bool _isRemember = false;
   int _selectedIndex = 0;
-  int get selectedIndex =>_selectedIndex;
+  int get selectedIndex => _selectedIndex;
 
-  updateSelectedIndex(int index){
+  updateSelectedIndex(int index) {
     _selectedIndex = index;
     notifyListeners();
   }
-
 
   bool get isLoading => _isLoading;
   bool get isRemember => _isRemember;
@@ -35,9 +34,11 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     ApiResponse apiResponse = await authRepo.registration(register);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       Map map = apiResponse.response.data;
-      String token = map["token"];
+      var token = await getToken();
+      // var token = map["token"];
       authRepo.saveUserToken(token);
       // await authRepo.updateToken();
       callback(true, token);
@@ -62,7 +63,8 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
     ApiResponse apiResponse = await authRepo.login(loginBody);
     _isLoading = false;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       Map map = apiResponse.response.data;
       String token = map["token"];
       authRepo.saveUserToken(token);
@@ -119,7 +121,6 @@ class AuthProvider with ChangeNotifier {
     return authRepo.clearUserEmailAndPassword();
   }
 
-
   String getUserPassword() {
     return authRepo.getUserPassword() ?? "";
   }
@@ -131,7 +132,8 @@ class AuthProvider with ChangeNotifier {
     _isLoading = false;
     notifyListeners();
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       responseModel = ResponseModel(apiResponse.response.data["message"], true);
     } else {
       String errorMessage;
@@ -146,5 +148,14 @@ class AuthProvider with ChangeNotifier {
       responseModel = ResponseModel(errorMessage, false);
     }
     return responseModel;
+  }
+
+  dynamic getToken() async {
+    FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
+    var fcmToken = await _firebaseMessaging.getToken();
+    print(fcmToken);
+
+    return fcmToken;
   }
 }

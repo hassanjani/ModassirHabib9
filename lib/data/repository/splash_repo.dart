@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_app/data/datasource/remote/dio/dio_client.dart';
 import 'package:user_app/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:user_app/data/model/response/base/api_response.dart';
 import 'package:user_app/utill/app_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashRepo {
   final DioClient dioClient;
@@ -14,6 +14,8 @@ class SplashRepo {
   Future<ApiResponse> getConfig() async {
     try {
       final response = await dioClient.get(AppConstants.CONFIG_URI);
+      print(response.data.toString());
+
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

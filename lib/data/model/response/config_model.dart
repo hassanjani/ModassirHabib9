@@ -39,6 +39,8 @@ class ConfigModel {
     if (json['currency_list'] != null) {
       _currencyList = [];
       json['currency_list'].forEach((v) {
+        print("here");
+        print(json['currency_list'].toString());
         _currencyList.add(new CurrencyList.fromJson(v));
       });
     }

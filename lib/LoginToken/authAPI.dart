@@ -27,6 +27,7 @@ class NetworkHandler {
   }
 
   Future<http.Response> post(url, Map<String, String> body) async {
+    print("auth");
     String token = await storage.read(key: "token");
     url = formater(url);
     log.d(body);
