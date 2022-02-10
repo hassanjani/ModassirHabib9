@@ -41,6 +41,7 @@ dependencies:
   flutter_local_notifications: ^5.0.0
   path_provider: ^2.0.1
   location: any
+  flutter_stripe: ^2.1.1
 #  place_picker: ^0.9.19
 #  google_maps_place_picker: any
 

@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:user_app/provider/auth_provider.dart';
 import 'package:user_app/provider/brand_provider.dart';
@@ -50,6 +51,11 @@ Future<void> main() async {
         ? int.parse(notificationAppLaunchDetails.payload)
         : null;
   }
+  Stripe.publishableKey =
+      "pk_test_51JT7jkCTAUDjRNFVfafy4Gskx1KzUNk8nPj8T51zzCPE18fA17DOFO6MqSZVTCxhVCSWGwouDSe0yjcObAznHLW600VBoGyDcg";
+  Stripe.merchantIdentifier = 'any';
+  await Stripe.instance.applySettings();
+
   await MyNotification.initialize(flutterLocalNotificationsPlugin);
   FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
 
