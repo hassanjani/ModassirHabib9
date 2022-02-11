@@ -11,6 +11,9 @@ class AuthProvider with ChangeNotifier {
   final AuthRepo authRepo;
   AuthProvider({this.authRepo});
 
+  double lat = 0;
+  double lng = 0;
+
   bool _isLoading = false;
   bool _isRemember = false;
   int _selectedIndex = 0;
@@ -26,6 +29,12 @@ class AuthProvider with ChangeNotifier {
 
   void updateRemember(bool value) {
     _isRemember = value;
+    notifyListeners();
+  }
+
+  changelatlng(double latitude, double longitude) {
+    lat = latitude;
+    lng = longitude;
     notifyListeners();
   }
 

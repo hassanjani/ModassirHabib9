@@ -138,6 +138,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
+    _ltController.text =
+        Provider.of<AuthProvider>(context, listen: false).lat.toString();
+    _lgController.text =
+        Provider.of<AuthProvider>(context, listen: false).lng.toString();
   }
 
   @override
@@ -238,53 +242,64 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   textInputAction: TextInputAction.done,
                 ),
               ),
+              Consumer<AuthProvider>(
+                builder: (context, value, child) {
+                  _ltController.text = value.lat.toString();
+                  return Container(
+                    margin: EdgeInsets.only(
+                        left: Dimensions.MARGIN_SIZE_DEFAULT,
+                        right: Dimensions.MARGIN_SIZE_DEFAULT,
+                        top: Dimensions.MARGIN_SIZE_SMALL),
+                    //  child: Text("Latitude: $lat")
+                    child: TextField(
+                      onTap: () {
+                        showSearch(
+                          context: context,
+                          // we haven't created AddressSearch class
+                          // this should be extending SearchDelegate
+                          delegate: AddressSearch(),
+                        );
+                      },
+                      focusNode: _ltFocus,
+                      controller: _ltController,
+                    ),
+                  );
+                },
+              ),
 
-              Container(
-                margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
-                //  child: Text("Latitude: $lat")
-                child: TextField(
-                  onTap: () {
-                    showSearch(
-                      context: context,
-                      // we haven't created AddressSearch class
-                      // this should be extending SearchDelegate
-                      delegate: AddressSearch(),
-                    );
-                  },
-                  focusNode: _ltFocus,
-                  controller: _ltController,
-                ),
+              Consumer<AuthProvider>(
+                builder: (context, value, child) {
+                  _lgController.text = value.lng.toString();
+                  return Container(
+                    margin: EdgeInsets.only(
+                        left: Dimensions.MARGIN_SIZE_DEFAULT,
+                        right: Dimensions.MARGIN_SIZE_DEFAULT,
+                        top: Dimensions.MARGIN_SIZE_SMALL),
+                    //  child: Text("Longitude: $lan")
+                    child: TextField(
+                      onTap: () {
+                        showSearch(
+                          context: context,
+                          // we haven't created AddressSearch class
+                          // this should be extending SearchDelegate
+                          delegate: AddressSearch(),
+                        );
+                      },
+                      focusNode: _lgFocus,
+                      controller: _lgController,
+                    ),
+                    // child: CustomTextField(
+                    //   textInputType: TextInputType.number,
+                    //   hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
+                    //   focusNode: _lgFocus,
+                    //   nextNode: _passwordFocus,
+                    //   controller: _lgController,
+                    //   isPhoneNumber: true,
+                    // ),
+                  );
+                },
               ),
-              Container(
-                margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
-                //  child: Text("Longitude: $lan")
-                child: TextField(
-                  onTap: () {
-                    showSearch(
-                      context: context,
-                      // we haven't created AddressSearch class
-                      // this should be extending SearchDelegate
-                      delegate: AddressSearch(),
-                    );
-                  },
-                  focusNode: _lgFocus,
-                  controller: _lgController,
-                ),
-                // child: CustomTextField(
-                //   textInputType: TextInputType.number,
-                //   hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
-                //   focusNode: _lgFocus,
-                //   nextNode: _passwordFocus,
-                //   controller: _lgController,
-                //   isPhoneNumber: true,
-                // ),
-              ),
+
               // Container(
               //   child: TextButton(
               //     onPressed: () {
@@ -382,11 +397,12 @@ class AddressSearch extends SearchDelegate<Suggestion> {
     return null;
   }
 
+  PlaceApiProvider placeApiProvider = PlaceApiProvider("sessionToken");
   @override
   Widget buildSuggestions(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<Suggestion>>(
       // We will put the api call here
-      future: null,
+      future: placeApiProvider.fetchSuggestions(query, "en"),
       builder: (context, snapshot) => query == ''
           ? Container(
               padding: EdgeInsets.all(16.0),
@@ -396,9 +412,15 @@ class AddressSearch extends SearchDelegate<Suggestion> {
               ? ListView.builder(
                   itemBuilder: (context, index) => ListTile(
                     // we will display the data returned from our future here
-                    title: Text(snapshot.data[index]),
-                    onTap: () {
-                      close(context, snapshot.data[index]);
+                    title: Text(snapshot.data[index].description),
+                    onTap: () async {
+                      List<double> list = await placeApiProvider
+                          .getPlaceDetailFromId(snapshot.data[index].placeId);
+                      await Provider.of<AuthProvider>(context, listen: false)
+                          .changelatlng(list[0], list[1]);
+                      Navigator.pop(context);
+
+                      //close(context, snapshot.data[index]);
                     },
                   ),
                   itemCount: snapshot.data.length,
